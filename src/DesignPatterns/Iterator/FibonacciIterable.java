@@ -2,19 +2,16 @@ package DesignPatterns.Iterator;
 
 import DesignPatterns.Iterator.Contracts.Iterator;
 
-import java.util.NoSuchElementException;
 
 public class FibonacciIterable implements Iterator<Integer> {
 
-    private final int termAmount;
     private int sequenceIndex;
     private int currentNumber;
     private int previousNumber;
 
     public FibonacciIterable(int termAmount) {
 
-        this.termAmount = termAmount;
-        this.sequenceIndex = 0;
+        this.sequenceIndex = termAmount;
         this.currentNumber = 1;
         this.previousNumber = -1;
 
@@ -27,7 +24,7 @@ public class FibonacciIterable implements Iterator<Integer> {
             throw new NoNextElementException() ;
         }
 
-        this.sequenceIndex++;
+        this.sequenceIndex--;
         int nextNumber = this.previousNumber + this.currentNumber;
         this.previousNumber = this.currentNumber;
         this.currentNumber = nextNumber;
@@ -38,7 +35,7 @@ public class FibonacciIterable implements Iterator<Integer> {
     @Override
     public boolean hasNext() {
 
-        return this.sequenceIndex < this.termAmount;
+        return this.sequenceIndex > 0;
 
     }
 

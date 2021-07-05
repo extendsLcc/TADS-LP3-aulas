@@ -3,7 +3,6 @@ package SaqueCaixaEletronico;
 import javax.swing.*;
 
 /**
- *
  * PROGRAMA CAIXA ELETRÔNICO:
  *
  * 1- Pedir o valor do saque
@@ -19,7 +18,6 @@ import javax.swing.*;
  * 1 nota de 20
  * 0 nota de 50
  * 0 nota de 100
- *
  */
 
 public class SaqueCaixaEletronico {

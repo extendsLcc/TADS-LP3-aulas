@@ -1,6 +1,5 @@
 package DesignPatterns.Iterator.Contracts;
 
-import DesignPatterns.Iterator.FibonacciIterable;
 
 public interface Iterator<T> {
 
