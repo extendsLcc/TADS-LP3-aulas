@@ -61,9 +61,9 @@ public class Main {
         try {
             nota.setVendedor(vendedor);
             nota.setCaixa(caixa);
-            // nota.setCaixa(vendedor);
-        } catch (CargoInvalidoException e) {
-            System.out.println(e);
+            nota.setCaixa(vendedor);
+        } catch (CargoInvalidoException cargoInvalidoException) {
+            ExceptionHandler.handleException( cargoInvalidoException );
             return;
         }
 
@@ -71,14 +71,14 @@ public class Main {
 
             nota.addItem(new NotaItem(produtos[0], produtos[0].getValorUnitario() * 1.5, 5))
                 .addItem(new NotaItem(produtos[1], produtos[1].getValorUnitario(), 5))
-                //.addItem(new NotaItem(produtos[1], produtos[0].getValorUnitario(), 11))
+                .addItem(new NotaItem(produtos[1], produtos[0].getValorUnitario(), 11))
             ;
             NotaItem notaItem = new NotaItem(produtos[2], produtos[2].getValorUnitario(), 2);
             notaItem.setQuantidade( 4 );
-            //notaItem.setQuantidade( -1 );
+            notaItem.setQuantidade( -1 );
 
-        } catch (QuantidadeIndisponivelException | QuantidadeItemInvalidoException e) {
-            System.out.println(e);
+        } catch (QuantidadeIndisponivelException | QuantidadeItemInvalidoException exception) {
+            ExceptionHandler.handleException(exception);
             return;
         }
 

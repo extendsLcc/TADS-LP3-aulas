@@ -1,11 +1,20 @@
 package Exception.Exceptions;
 
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public abstract class BaseException extends Exception {
 
-    public BaseException(String message) {
+    private SeverityLevel severityLevel;
+
+    public BaseException(String message, SeverityLevel severityLevel) {
         super(message);
+        this.severityLevel = severityLevel;
+    }
+
+    public SeverityLevel getSeverityLevel() {
+        return severityLevel;
     }
 
     @Override
@@ -13,7 +22,12 @@ public abstract class BaseException extends Exception {
         String msg = "Erro:";
         msg += this.getMessage() + "\n";
         msg += this.getCause() + "\n";
-        msg += Arrays.asList(this.getStackTrace()) + "\n";
+        msg += "severity Level: " + this.getSeverityLevel() + "\n";
+        msg += "Stack Trace: \n"
+            + Arrays.stream(this.getStackTrace())
+                .map(Objects::toString)
+                .collect(Collectors.joining("\n"))
+            + "\nEnd Stack Trace \n";
         return msg;
     }
 }
