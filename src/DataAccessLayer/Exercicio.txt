@@ -1,0 +1,8 @@
+
+# implementar todas rotinas da classes filhas DAO.
+    - Cidade
+    - Estado
+
+# implementar tb_produto
+    - Produto
+
