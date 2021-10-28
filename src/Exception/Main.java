@@ -62,12 +62,6 @@ public class Main {
             nota.setVendedor(vendedor);
             nota.setCaixa(caixa);
             nota.setCaixa(vendedor);
-        } catch (CargoInvalidoException cargoInvalidoException) {
-            ExceptionHandler.handleException( cargoInvalidoException );
-            return;
-        }
-
-        try {
 
             nota.addItem(new NotaItem(produtos[0], produtos[0].getValorUnitario() * 1.5, 5))
                 .addItem(new NotaItem(produtos[1], produtos[1].getValorUnitario(), 5))
@@ -77,8 +71,8 @@ public class Main {
             notaItem.setQuantidade( 4 );
             notaItem.setQuantidade( -1 );
 
-        } catch (QuantidadeIndisponivelException | QuantidadeItemInvalidoException exception) {
-            ExceptionHandler.handleException(exception);
+        } catch (CargoInvalidoException | QuantidadeIndisponivelException | QuantidadeItemInvalidoException cargoInvalidoException) {
+            ExceptionHandler.handleException( cargoInvalidoException );
             return;
         }
 
