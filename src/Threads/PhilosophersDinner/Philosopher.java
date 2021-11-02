@@ -2,39 +2,42 @@ package Threads.PhilosophersDinner;
 
 public class Philosopher extends Thread {
 
-    Debugger debugger = new Debugger("Philosopher");
+    Debugger debugger;
+    String name;
     Fork leftFork;
     Fork rightFork;
     long id;
 
-    public Philosopher(Fork leftFork, Fork rightFork) {
+    public Philosopher(String name, Fork leftFork, Fork rightFork) {
+        this.name = name;
         this.leftFork = leftFork;
         this.rightFork = rightFork;
+        this.debugger = new Debugger("Philosopher " + name);
     }
 
     private boolean takeForks() {
-        debugger.debug("try take forks...");
+        debugger.debug(this.name + " is trying take forks...");
         if (this.leftFork.take()) {
             if (this.rightFork.take()) {
                 return true;
             }
             this.leftFork.release();
         }
-        debugger.debug("forks are already in use, return to sleep...");
+        debugger.debug("forks are already in use, " + this.name + " returns to sleep...");
         return false;
     }
 
     private void eat() {
-        debugger.threadSleepForRandomSeconds(5, "eating...");
+        debugger.threadSleepForRandomSeconds(5, this.name + " is eating...");
     }
 
     @Override
     public void run() {
         this.id = Thread.currentThread().getId();
-        debugger.threadSleepForRandomSeconds(5, "running...");
+        debugger.threadSleepForRandomSeconds(5, this.name + " thread is running...");
 
         while (true) {
-            debugger.threadSleepForRandomSeconds(5, "sleeping");
+            debugger.threadSleepForRandomSeconds(5, this.name + " is sleeping...");
             if (this.takeForks()) {
                 this.eat();
                 leftFork.release();

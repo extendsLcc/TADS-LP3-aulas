@@ -3,8 +3,10 @@ package Threads.PhilosophersDinner;
 public class Fork {
 
     TheSemaphore fork = new MySemaphore(1);
+    String forkName;
 
-    public Fork() {
+    public Fork(String forkName) {
+        this.forkName = forkName;
     }
 
     public boolean take() {
