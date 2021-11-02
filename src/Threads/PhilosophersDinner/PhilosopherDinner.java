@@ -8,6 +8,7 @@ public class PhilosopherDinner {
 
     public static void main(String[] args) {
 
+        Debugger debugger = new Debugger("Main");
         SilverwareDrawer silverwareDrawer = new SilverwareDrawer();
         Philosopher[] philosophers = {
             new Philosopher("Kant", silverwareDrawer.takeLeftFork(), silverwareDrawer.takeRightFork()),
@@ -16,6 +17,8 @@ public class PhilosopherDinner {
             new Philosopher("Nietzsche", silverwareDrawer.takeLeftFork(), silverwareDrawer.takeRightFork()),
             new Philosopher("Buddha", silverwareDrawer.takeLeftFork(), silverwareDrawer.takeRightFork()),
         };
+
+        debugger.debug("Start application");
 
         for (Philosopher philosopher : philosophers) {
             philosopher.start();
@@ -26,7 +29,7 @@ public class PhilosopherDinner {
     private static class SilverwareDrawer {
 
         private int currentPosition = 0;
-        private List<Fork> forkList = IntStream
+        private final List<Fork> forkList = IntStream
             .range(0, 5)
             .mapToObj((i) -> new Fork("fork(" + i + ")"))
             .collect(Collectors.toList());
@@ -35,6 +38,11 @@ public class PhilosopherDinner {
             return this.forkList.get(++this.currentPosition % this.forkList.size());
         }
 
+        /**
+         * Will throws error if called after currentPosition reaches forkList size
+         *
+         * @return Fork
+         */
         public Fork takeRightFork() {
             int rightForkPosition = this.currentPosition - 1;
             return this.forkList.get(rightForkPosition);
