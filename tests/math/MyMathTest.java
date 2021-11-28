@@ -43,4 +43,26 @@ public class MyMathTest {
         assertThrows(ArithmeticException.class, () -> math.sub(Integer.MIN_VALUE, 1));
     }
 
+    @Test
+    void testMultValid() {
+        assert math.mult(0, 999) == 0;
+        assert math.mult(1, 1) == 1;
+        assert math.mult(2, 2) == 4;
+        assert math.mult(-2, 5) == -10;
+        assert math.mult(-2, -5) == 10;
+    }
+
+    @Test
+    void testMultInvalid() {
+        assert math.mult(0, 999) != 999;
+        assert math.mult(1, 1) != 2;
+        assert math.mult(2, 2) != 2;
+        assert math.mult(-2, 5) != 10;
+        assert math.mult(-2, -5) != -10;
+    }
+
+    void testMultException() {
+        assertThrows(ArithmeticException.class, () -> math.mult(Integer.MAX_VALUE, 2));
+    }
+
 }
