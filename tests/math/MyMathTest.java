@@ -61,8 +61,27 @@ public class MyMathTest {
         assert math.mult(-2, -5) != -10;
     }
 
+    @Test
     void testMultException() {
         assertThrows(ArithmeticException.class, () -> math.mult(Integer.MAX_VALUE, 2));
     }
 
+    @Test
+    void testDivValid() {
+        assert math.div(10, 2) == 5;
+        assert math.div(-10, 2) == -5;
+        assert math.div(-10, -2) == 5;
+    }
+
+    @Test
+    void testDivInvalid() {
+        assert math.div(10, 2) != 10;
+        assert math.div(-10, 2) != 5;
+        assert math.div(-10, -2) != -5;
+    }
+
+    @Test
+    void testDivException() {
+        assertThrows(ArithmeticException.class, () -> math.div(10, 0));
+    }
 }
