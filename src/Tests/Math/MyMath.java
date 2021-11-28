@@ -10,6 +10,10 @@ public class MyMath {
         return Math.subtractExact(a, b);
     }
 
+    public int mult(int a, int b) {
+        return Math.multiplyExact(a, b);
+    }
+
     public static void main(String[] args) {
         MyMath math = new MyMath();
         int sumResult = math.sum(2, 2);
