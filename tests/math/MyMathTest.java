@@ -3,13 +3,27 @@ package math;
 import Tests.Math.MyMath;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class MyMathTest {
+
     MyMath math = new MyMath();
 
     @Test
-    void test_sum() {
+    void testSumValid() {
         assert math.sum(1, 1) == 2;
         assert math.sum(11, 22) == 33;
+    }
+
+    @Test
+    void testSumInvalid() {
+        assert math.sum(1, 1) != 3;
+        assert math.sum(11, 22) != 34;
+    }
+
+    @Test
+    void testSumException() {
+        assertThrows(ArithmeticException.class, () -> math.sum(Integer.MAX_VALUE, 1));
     }
 
 }
