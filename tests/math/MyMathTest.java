@@ -26,4 +26,21 @@ public class MyMathTest {
         assertThrows(ArithmeticException.class, () -> math.sum(Integer.MAX_VALUE, 1));
     }
 
+    @Test
+    void testSubValid() {
+        assert math.sub(1, 1) == 0;
+        assert math.sub(11, 22) == -11;
+    }
+
+    @Test
+    void testSubInvalid() {
+        assert math.sub(1, 1) != 2;
+        assert math.sub(11, 22) != 33;
+    }
+
+    @Test
+    void testSubException() {
+        assertThrows(ArithmeticException.class, () -> math.sub(Integer.MIN_VALUE, 1));
+    }
+
 }
