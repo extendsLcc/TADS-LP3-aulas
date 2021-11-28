@@ -81,7 +81,7 @@ public class MyMathTest {
     }
 
     @Test
-    void testDivException() {
+    void testDivByZeroException() {
         assertThrows(ArithmeticException.class, () -> math.div(10, 0));
     }
 }
