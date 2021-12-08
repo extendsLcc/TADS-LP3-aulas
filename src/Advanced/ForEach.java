@@ -10,6 +10,7 @@ public class ForEach {
     public static void main(String[] args) {
         ForEach.removeNumberFromListWithStream();
         ForEach.removeNumberFromListBasic();
+        ForEach.removeNumberFromInsideLoop();
     }
 
     private static void removeNumberFromListWithStream() {
@@ -37,6 +38,22 @@ public class ForEach {
         numberList.removeAll(negativeNumbers);
 
         System.out.println("Filter number list with basic foreach");
+        System.out.println(Arrays.asList(numbers));
+        System.out.println(numberList);
+    }
+
+    private static void removeNumberFromInsideLoop() {
+        Integer[] numbers = {2, 4, -3, 5, -6};
+        List<Integer> numberList = new ArrayList<>(Arrays.asList(numbers));
+
+        for (int index = 0; index < numberList.size(); index++) {
+            if (numberList.get(index) < 0) {
+                numberList.remove(index);
+                index--;
+            }
+        }
+
+        System.out.println("Filter number list with from inside of loop");
         System.out.println(Arrays.asList(numbers));
         System.out.println(numberList);
     }
