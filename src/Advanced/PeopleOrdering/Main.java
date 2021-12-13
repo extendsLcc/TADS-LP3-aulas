@@ -16,7 +16,7 @@ public class Main {
         }
 
         people.show();
-        people.order();
+        people.order(OrderingMethod.STREAM);
         people.show();
 
     }

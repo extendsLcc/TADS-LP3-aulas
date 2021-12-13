@@ -1,6 +1,6 @@
 package Advanced.PeopleOrdering;
 
-public class Person {
+public class Person implements Comparable<Person> {
     String name;
     int age;
     double height;
@@ -18,6 +18,11 @@ public class Person {
             ", age='" + age + '\'' +
             ", height=" + height +
             '}';
+    }
+
+    @Override
+    public int compareTo(Person person) {
+        return Integer.compare(this.age, person.age);
     }
 
 }
