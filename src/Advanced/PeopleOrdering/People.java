@@ -1,6 +1,7 @@
 package Advanced.PeopleOrdering;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,14 +15,22 @@ public class People {
     public void order(OrderingMethod orderingMethod) {
 
         switch (orderingMethod) {
-            case STREAM:
-                this.personList = this.personList.stream()
-                    //.sorted((personA, personB) -> Integer.compare(personA.age, personB.age))
-                    .sorted(Person::compareTo)
-                    .collect(Collectors.toList());
-                break;
-            case SPLIT:
-                this.personList = this.splitSortPersonListByAge(personList);
+            case STREAM -> this.personList = this.personList.stream()
+                //.sorted((personA, personB) -> Integer.compare(personA.age, personB.age))
+                .sorted(Person::compareTo)
+                .collect(Collectors.toList());
+            case SPLIT -> this.personList = this.splitSortPersonListByAge(personList);
+        }
+
+    }
+
+    public void orderBy(Comparator<Person> comparator, OrderingMethod orderingMethod) {
+
+        switch (orderingMethod) {
+            case STREAM -> this.personList = this.personList.stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
+            case BUBBLE -> this.personList = this.bubbleSort(this.personList, comparator);
         }
 
     }
@@ -61,9 +70,30 @@ public class People {
         return personList;
     }
 
+    private List<Person> bubbleSort(List<Person> personList, Comparator<Person> personComparator) {
+        boolean isSorted = false;
+
+        while (!isSorted) {
+            isSorted = true;
+
+            for (int index = 0; index < personList.size() - 1; index++) {
+                Person personA = personList.get(index);
+                Person personB = personList.get(index + 1);
+
+                if (personComparator.compare(personA, personB) > 0) {
+                    personList.remove(index + 1);
+                    personList.add(index, personB);
+                    isSorted = false;
+                }
+            }
+        }
+        return personList;
+    }
+
 }
 
 enum OrderingMethod {
     STREAM,
     SPLIT,
+    BUBBLE,
 }

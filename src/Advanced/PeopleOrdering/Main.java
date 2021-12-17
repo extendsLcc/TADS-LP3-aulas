@@ -16,7 +16,20 @@ public class Main {
         }
 
         people.show();
+        System.out.println("SortBy Age, split algorithm");
         people.order(OrderingMethod.STREAM);
+        people.show();
+
+        System.out.println("SortBy Height");
+        people.orderBy((Person personA, Person personB) -> Double.compare(personA.height, personB.height), OrderingMethod.BUBBLE);
+        people.show();
+
+        System.out.println("SortBy Age");
+        people.orderBy((Person personA, Person personB) -> Integer.compare(personA.age, personB.age), OrderingMethod.BUBBLE);
+        people.show();
+
+        System.out.println("SortBy Name");
+        people.orderBy((Person personA, Person personB) -> personA.name.compareTo(personB.name), OrderingMethod.BUBBLE);
         people.show();
 
     }
