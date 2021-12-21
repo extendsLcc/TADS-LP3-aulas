@@ -23,7 +23,7 @@ public class Group<T> {
         if (this.group.isEmpty()) return;
         Field comparingField = this.getClassField(attribute);
         Class<?> fieldType = comparingField.getType();
-        if (fieldType.isAssignableFrom(Comparable.class)) throw new NonComparableFieldType();
+        if (!fieldType.isPrimitive() && !Comparable.class.isAssignableFrom(fieldType)) throw new NonComparableFieldType(attribute);
         this.group = this.group.stream()
             .sorted((itemA, itemB) -> {
                 try {
@@ -45,7 +45,7 @@ public class Group<T> {
 
 class NonComparableFieldType extends Exception {
 
-    public NonComparableFieldType() {
-        super("Given field type is not Comparable");
+    public NonComparableFieldType(String field) {
+        super(field + " field type is not Comparable");
     }
 }

@@ -48,6 +48,34 @@ public class Main {
             nonComparableFieldType.printStackTrace();
         }
 
+
+        Race[] races = {
+            new Race("Dog"),
+            new Race("Bird"),
+        };
+        Animal[] animals = {
+            new Animal("Naylon", 5, 1.2, races[0]),
+            new Animal("Feathers", 15, 0.3, races[1]),
+            new Animal("Cait", 2, 0.8, races[1]),
+        };
+
+        Group<Animal> animalGroup = new Group<>(Animal.class);
+        for (Animal animal : animals) {
+            animalGroup.add(animal);
+        }
+        try {
+            animalGroup.orderBy("name");
+            System.out.println(animalGroup.group);
+            animalGroup.orderBy("age");
+            System.out.println(animalGroup.group);
+            animalGroup.orderBy("weight");
+            System.out.println(animalGroup.group);
+            animalGroup.orderBy("race");
+            System.out.println(animalGroup.group);
+        } catch (NoSuchFieldException | NonComparableFieldType nonComparableFieldType) {
+            nonComparableFieldType.printStackTrace();
+        }
+
     }
 
 }
