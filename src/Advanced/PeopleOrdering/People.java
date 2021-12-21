@@ -24,6 +24,10 @@ public class People {
 
     }
 
+    public void orderBy(Comparator<Person> comparator) {
+        this.orderBy(comparator, OrderingMethod.BUBBLE);
+    }
+
     public void orderBy(Comparator<Person> comparator, OrderingMethod orderingMethod) {
 
         switch (orderingMethod) {

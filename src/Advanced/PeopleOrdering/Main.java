@@ -32,6 +32,22 @@ public class Main {
         people.orderBy((Person personA, Person personB) -> personA.name.compareTo(personB.name), OrderingMethod.BUBBLE);
         people.show();
 
+
+        Group<Person> personGroup = new Group<>(Person.class);
+        for (Person person : persons) {
+            personGroup.add(person);
+        }
+        try {
+            personGroup.orderBy("age");
+            System.out.println(personGroup.group);
+            personGroup.orderBy("height");
+            System.out.println(personGroup.group);
+            personGroup.orderBy("name");
+            System.out.println(personGroup.group);
+        } catch (NoSuchFieldException | NonComparableFieldType nonComparableFieldType) {
+            nonComparableFieldType.printStackTrace();
+        }
+
     }
 
 }
