@@ -25,6 +25,11 @@ public class Fish extends Animal implements Pet{
     }
 
     @Override
+    public void walk() {
+        System.out.println("Fish cannot walk");
+    }
+
+    @Override
     public void play() {
         System.out.println("Fish is playing...");
     }
