@@ -1,8 +1,8 @@
 package CSV;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Main {
 
@@ -11,10 +11,11 @@ public class Main {
         System.out.println("Parsed CSV");
         System.out.println(irisList);
         List<Iris> leafWidthOrderedIrisList = irisList.stream()
-            .sorted((irisA, irisB) -> Double.compare(irisA.getFolhaLargura(), irisB.getFolhaLargura()))
+            .sorted(Comparator.comparingDouble(Iris::getFolhaLargura))
             .toList();
         System.out.println("Ordered by leaf width");
         System.out.println(leafWidthOrderedIrisList);
+        IrisCSVWriter.writeFile("src/CSV/data.csv/iris.data--ordenado.csv", leafWidthOrderedIrisList);
     }
 
 }
