@@ -35,4 +35,15 @@ public class Iris {
     public String getNomeFlor() {
         return nomeFlor;
     }
+
+    @Override
+    public String toString() {
+        return "\nIris{" +
+            "folhaComprimento=" + folhaComprimento +
+            ", folhaLargura=" + folhaLargura +
+            ", petalaComprimento=" + petalaComprimento +
+            ", petalaLargura=" + petalaLargura +
+            ", nomeFlor='" + nomeFlor + '\'' +
+            "}\n";
+    }
 }
